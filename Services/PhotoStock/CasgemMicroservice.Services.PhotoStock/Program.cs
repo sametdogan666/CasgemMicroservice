@@ -1,9 +1,5 @@
-using System.Reflection;
-using CasgemMicroservice.Services.Catalog.Services.CategoryServices;
-using CasgemMicroservice.Services.Catalog.Services.ProductServices;
-using CasgemMicroservice.Services.Catalog.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,18 +7,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
 {
-    opt.Authority = builder.Configuration["IdentityServerURL"];
-    opt.Audience = "resource_catalog";
+    opt.Authority = builder.Configuration["IdentityServerUrl"];
+    opt.Audience = "resource_photo_stock";
     opt.RequireHttpsMetadata = false;
 });
-builder.Services.AddScoped<ICategoryService, CategoryService>();
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
-builder.Services.AddSingleton<IDatabaseSettings>(sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
-
-
-builder.Services.AddControllers();
+builder.Services.AddControllers(opt =>
+{
+    opt.Filters.Add(new AuthorizeFilter());
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>

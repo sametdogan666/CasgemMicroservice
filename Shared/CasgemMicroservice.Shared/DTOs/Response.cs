@@ -1,6 +1,6 @@
 ﻿namespace CasgemMicroservice.Shared.DTOs;
 
-public class Response<T> where T : class
+public class Response<T> 
 {
     public T? Data { get; set; }
     public int StatusCode { get; set; }

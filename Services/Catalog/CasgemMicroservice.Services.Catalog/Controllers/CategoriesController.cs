@@ -1,5 +1,6 @@
 ﻿using CasgemMicroservice.Services.Catalog.DTOs.CategoryDTOs;
 using CasgemMicroservice.Services.Catalog.Services.CategoryServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,7 @@ namespace CasgemMicroservice.Services.Catalog.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CategoriesController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
