@@ -14,7 +14,8 @@ namespace CasgemMicroservice.IdentityServer
         {
             new ApiResource("resource_catalog") { Scopes = { "catalog_full_permission" } },
                 new ApiResource("resource_photo_stock"){Scopes = { "photo_stock_full_permission" }},
-                    new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
+                    new ApiResource("resource_basket"){Scopes = { "basket_full_permission" }},
+                        new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
         };
 
         public static IEnumerable<IdentityResource> IdentityResources =>
@@ -29,7 +30,8 @@ namespace CasgemMicroservice.IdentityServer
             new ApiScope[]
             {
                 new ApiScope("catalog_full_permission", "Catalog API için full erişim"),
-                new ApiScope("photo_stock_full_permission", "Phot Stock API için full erişim"),
+                new ApiScope("photo_stock_full_permission", "Photo Stock API için full erişim"),
+                new ApiScope("basket_full_permission", "Basket API için full erişim"),
                 new ApiScope(IdentityServerConstants.LocalApi.ScopeName),
             };
 
@@ -59,7 +61,7 @@ namespace CasgemMicroservice.IdentityServer
 
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "catalog_full_permission", "basket_full_permission", IdentityServerConstants.LocalApi.ScopeName, IdentityServerConstants.StandardScopes.Email, IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile },
+                    AllowedScopes = { "catalog_full_permission", "photo_stock_full_permission", "basket_full_permission", IdentityServerConstants.LocalApi.ScopeName, IdentityServerConstants.StandardScopes.Email, IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile },
                     AccessTokenLifetime = 3600
                 },
             };

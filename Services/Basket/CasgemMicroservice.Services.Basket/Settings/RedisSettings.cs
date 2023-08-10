@@ -2,7 +2,7 @@
 
 public class RedisSettings
 {
-    public string? Host { get; set; }
-    public string? Post { get; set; }
+    public string Host { get; set; } = null!;
+    public int Port { get; set; }
 
 }

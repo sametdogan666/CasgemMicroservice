@@ -19,7 +19,7 @@ builder.Services.AddControllers(opt =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "CasgemMicroservice.Services.Catalog", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "CasgemMicroservice.Services.PhotoStock", Version = "v1" });
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
