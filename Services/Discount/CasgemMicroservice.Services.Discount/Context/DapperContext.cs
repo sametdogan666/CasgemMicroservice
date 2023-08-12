@@ -22,7 +22,7 @@ public class DapperContext : DbContext
         optionsBuilder.UseSqlServer("Server=localhost,1433;Database=CasgemMicroserviceDiscountDb; User=sa; Password=123456Aa*");
     }
 
-    public DbSet<DiscountCoupons> DiscountCouponses { get; set; }
+    public DbSet<DiscountCoupons>? DiscountCouponses { get; set; }
 
     //public IDbConnection CreateConnection() => new SqlConnection(_connectionString);
 
