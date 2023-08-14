@@ -19,7 +19,17 @@ public class CreateOrderDetailCommandHandler : IRequestHandler<CreateOrderDetail
 
     public async Task<CreateOrderDetailResponse> Handle(CreateOrderDetailCommand request, CancellationToken cancellationToken)
     {
-        var result = _mapper.Map<OrderDetail>(request);
+
+        var result = new OrderDetail
+        {
+            ProductId = request.ProductId,
+            ProductName = request.ProductName,
+            ProductPrice = request.ProductPrice,
+            ProductAmount = request.ProductAmount,
+            OrderingId = request.OrderingId
+        };
+
+        //var result = _mapper.Map<OrderDetail>(request);
         await _orderDetailRepository.CreateAsync(result);
 
         return _mapper.Map<CreateOrderDetailResponse>(result);

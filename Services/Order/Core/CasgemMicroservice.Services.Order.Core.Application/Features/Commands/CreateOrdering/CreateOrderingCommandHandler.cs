@@ -19,7 +19,15 @@ internal sealed class CreateOrderingCommandHandler:IRequestHandler<CreateOrderin
 
     public async Task<CreateOrderingResponse> Handle(CreateOrderingCommand request, CancellationToken cancellationToken)
     {
-        var result = _mapper.Map<Ordering>(request);
+        var result = new Ordering
+        {
+            OrderDate = Convert.ToDateTime(DateTime.Now.ToShortDateString()),
+            UserId = request.UserId,
+            TotalPrice = request.TotalPrice
+
+        };
+
+        //var result = _mapper.Map<Ordering>(request);
         await _orderingRepository.CreateAsync(result);
 
         return _mapper.Map<CreateOrderingResponse>(result);

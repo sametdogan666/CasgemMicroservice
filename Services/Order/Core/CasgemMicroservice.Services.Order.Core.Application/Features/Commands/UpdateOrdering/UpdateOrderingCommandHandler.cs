@@ -7,10 +7,10 @@ namespace CasgemMicroservice.Services.Order.Core.Application.Features.Commands.U
 
 internal sealed class UpdateOrderingCommandHandler : IRequestHandler<UpdateOrderingCommand, UpdateOrderingResponse>
 {
-    private readonly IRepository<Ordering> _orderingRepository;
+    private readonly IRepository<Ordering?> _orderingRepository;
     private readonly IMapper _mapper;
 
-    public UpdateOrderingCommandHandler(IRepository<Ordering> orderingRepository, IMapper mapper)
+    public UpdateOrderingCommandHandler(IRepository<Ordering?> orderingRepository, IMapper mapper)
     {
         _orderingRepository = orderingRepository;
         _mapper = mapper;
@@ -19,6 +19,9 @@ internal sealed class UpdateOrderingCommandHandler : IRequestHandler<UpdateOrder
     public async Task<UpdateOrderingResponse> Handle(UpdateOrderingCommand request, CancellationToken cancellationToken)
     {
         var result = await _orderingRepository.GetByIdAsync(request.Id);
+        result.OrderDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+        result.TotalPrice = request.TotalPrice;
+        result.UserId = request.UserId;
         await _orderingRepository.UpdateAsync(result);
 
         return _mapper.Map<UpdateOrderingResponse>(result);

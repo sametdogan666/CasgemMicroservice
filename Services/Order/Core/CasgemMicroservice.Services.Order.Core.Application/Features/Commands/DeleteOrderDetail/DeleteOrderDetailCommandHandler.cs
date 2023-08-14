@@ -6,9 +6,9 @@ namespace CasgemMicroservice.Services.Order.Core.Application.Features.Commands.D
 
 internal sealed class DeleteOrderDetailCommandHandler : IRequestHandler<DeleteOrderDetailCommand>
 {
-    private readonly IRepository<OrderDetail> _orderDetailRepository;
+    private readonly IRepository<OrderDetail?> _orderDetailRepository;
 
-    public DeleteOrderDetailCommandHandler(IRepository<OrderDetail> orderDetailRepository)
+    public DeleteOrderDetailCommandHandler(IRepository<OrderDetail?> orderDetailRepository)
     {
         _orderDetailRepository = orderDetailRepository;
     }

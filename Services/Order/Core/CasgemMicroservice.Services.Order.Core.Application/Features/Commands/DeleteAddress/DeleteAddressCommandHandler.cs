@@ -6,9 +6,9 @@ namespace CasgemMicroservice.Services.Order.Core.Application.Features.Commands.D
 
 internal sealed class DeleteAddressCommandHandler : IRequestHandler<DeleteAddressCommand>
 {
-    private readonly IRepository<Address> _addressRepository;
+    private readonly IRepository<Address?> _addressRepository;
 
-    public DeleteAddressCommandHandler(IRepository<Address> addressRepository)
+    public DeleteAddressCommandHandler(IRepository<Address?> addressRepository)
     {
         _addressRepository = addressRepository;
     }

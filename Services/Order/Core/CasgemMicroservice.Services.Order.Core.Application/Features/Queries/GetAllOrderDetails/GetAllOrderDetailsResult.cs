@@ -7,5 +7,5 @@ public class GetAllOrderDetailsResult
     public string? ProductName { get; set; }
     public decimal ProductPrice { get; set; }
     public int ProductAmount { get; set; }
-    public int OrderId { get; set; }
+    public int OrderingId { get; set; }
 }

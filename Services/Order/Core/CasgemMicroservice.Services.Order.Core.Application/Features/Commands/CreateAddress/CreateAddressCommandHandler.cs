@@ -18,7 +18,15 @@ public class CreateAddressCommandHandler:IRequestHandler<CreateAddressCommand, C
 
     public async Task<CreateAddressResponse> Handle(CreateAddressCommand request, CancellationToken cancellationToken)
     {
-        var result = _mapper.Map<Address>(request);
+        var result = new Address
+        {
+            City = request.City,
+            Detail = request.Detail,
+            District = request.District,
+            UserId = request.UserId,
+        };
+
+        //var result = _mapper.Map<Address>(request);
         await _addressRepository.CreateAsync(result);
 
         return _mapper.Map<CreateAddressResponse>(result);
