@@ -6,11 +6,14 @@ using CasgemMicroservice.Services.Order.Core.Application.Features.Commands.Updat
 using CasgemMicroservice.Services.Order.Core.Application.Features.Commands.UpdateOrdering;
 using CasgemMicroservice.Services.Order.Core.Application.Features.Queries.GetAllAddresses;
 using CasgemMicroservice.Services.Order.Core.Application.Features.Queries.GetAllOrdering;
+using CasgemMicroservice.Services.Order.Core.Application.Features.Queries.GetAllOrderingByUserId;
 using CasgemMicroservice.Services.Order.Core.Application.Features.Queries.GetByIdAddress;
 using CasgemMicroservice.Services.Order.Core.Application.Features.Queries.GetByIdOrdering;
+using CasgemMicroservice.Shared.Services;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace CasgemMicroservice.Services.Order.WebApi.Controllers
 {
@@ -19,10 +22,12 @@ namespace CasgemMicroservice.Services.Order.WebApi.Controllers
     public class OrderingsController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly ISharedIdentityService _sharedIdentityService;
 
-        public OrderingsController(IMediator mediator)
+        public OrderingsController(IMediator mediator, ISharedIdentityService sharedIdentityService)
         {
             _mediator = mediator;
+            _sharedIdentityService = sharedIdentityService;
         }
 
         [HttpGet("get-list-orderings")]
@@ -64,5 +69,17 @@ namespace CasgemMicroservice.Services.Order.WebApi.Controllers
 
             return Ok("Adres silindi");
         }
+
+        [HttpGet("get-all-ordering-by-user-id")]
+        public async Task<IActionResult> GetAllOrderingByUserId()
+        {
+            var response = await _mediator.Send(new GetAllOrderingByUserIdQuery
+            {
+                UserId = _sharedIdentityService.GetUserId
+            });
+
+            return Ok(response);
+        }
+
     }
 }

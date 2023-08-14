@@ -1,10 +1,13 @@
-﻿using CasgemMicroservice.Services.Order.Core.Application.Interfaces;
+﻿using System.Linq.Expressions;
+using CasgemMicroservice.Services.Order.Core.Application.Interfaces;
+using CasgemMicroservice.Services.Order.Core.Domain.Models.Entities;
 using CasgemMicroservice.Services.Order.Infra.Persistance.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace CasgemMicroservice.Services.Order.Infra.Persistance.Repository;
 
-public class Repository<T> :IRepository<T> where T : class
+public class Repository<T> : IRepository<T> where T : class
 {
     private readonly OrderContext _orderContext;
 
@@ -46,4 +49,7 @@ public class Repository<T> :IRepository<T> where T : class
 
         return entity;
     }
+
+    public Task<List<T>> FindByCondition(Expression<Func<T, bool>> expression) => _orderContext.Set<T>().Where(expression).ToListAsync();
+
 }

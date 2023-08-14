@@ -8,4 +8,5 @@ public class GetByIdOrderDetailResult
     public decimal ProductPrice { get; set; }
     public int ProductAmount { get; set; }
     public int OrderingId { get; set; }
+
 }
