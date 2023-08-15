@@ -1,13 +1,9 @@
-using CasgemMicroservice.Services.Cargo.Business.Abstract;
-using CasgemMicroservice.Services.Cargo.Business.Concrete;
-using CasgemMicroservice.Services.Cargo.DataAccess.Abstract;
-using CasgemMicroservice.Services.Cargo.DataAccess.Concrete;
-using CasgemMicroservice.Services.Cargo.DataAccess.Concrete.EntityFramework;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.OpenApi.Models;
-using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using System.IdentityModel.Tokens.Jwt;
+using CasgemMicroservice.Services.Payment.DAL;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,15 +13,10 @@ JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
 {
     opt.Authority = builder.Configuration["IdentityServerUrl"];
-    opt.Audience = "resource_cargo";
+    opt.Audience = "resource_payment";
     opt.RequireHttpsMetadata = false;
 });
-
-builder.Services.AddDbContext<CargoContext>();
-builder.Services.AddScoped<ICargoDetailDal, EfCargoDetailDal>();
-builder.Services.AddScoped<ICargoDetailService, CargoDetailManager>();
-builder.Services.AddScoped<ICargoStateDal, EfCargoStateDal>();
-builder.Services.AddScoped<ICargoStateService, CargoStateManager>();
+builder.Services.AddDbContext<PaymentContext>();
 
 builder.Services.AddControllers(opt =>
 {

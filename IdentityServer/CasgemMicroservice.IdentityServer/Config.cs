@@ -17,7 +17,10 @@ namespace CasgemMicroservice.IdentityServer
                     new ApiResource("resource_basket"){Scopes = { "basket_full_permission" }},
                         new ApiResource("resource_discount"){Scopes = { "discount_full_permission" }},
                             new ApiResource("resource_order"){Scopes = { "order_full_permission" }},
-                                new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
+                                new ApiResource("resource_cargo"){Scopes = { "cargo_full_permission" }},
+                                    new ApiResource("resource_payment"){Scopes = { "payment_full_permission" }},
+                                        new ApiResource("resource_gateway"){Scopes = { "gateway_full_permission" }},
+                                            new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
         };
 
         public static IEnumerable<IdentityResource> IdentityResources =>
@@ -36,6 +39,9 @@ namespace CasgemMicroservice.IdentityServer
                 new ApiScope("basket_full_permission", "Basket API için full erişim"),
                 new ApiScope("discount_full_permission", "Basket API için full erişim"),
                 new ApiScope("order_full_permission", "Order API için full erişim"),
+                new ApiScope("cargo_full_permission", "Cargo API için full erişim"),
+                new ApiScope("payment_full_permission", "Payment API için full erişim"),
+                new ApiScope("gateway_full_permission", "Gateway API için full erişim"),
                 new ApiScope(IdentityServerConstants.LocalApi.ScopeName),
             };
 
@@ -51,7 +57,7 @@ namespace CasgemMicroservice.IdentityServer
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     ClientSecrets = { new Secret("secret".Sha256()) },
 
-                    AllowedScopes = { "catalog_full_permission", "photo_stock_full_permission", IdentityServerConstants.LocalApi.ScopeName }
+                    AllowedScopes = { "catalog_full_permission", "photo_stock_full_permission", "gateway_full_permission", IdentityServerConstants.LocalApi.ScopeName }
                 },
 
                 // interactive client using code flow + pkce
@@ -65,7 +71,7 @@ namespace CasgemMicroservice.IdentityServer
 
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "catalog_full_permission", "photo_stock_full_permission", "basket_full_permission", "discount_full_permission", "order_full_permission", IdentityServerConstants.LocalApi.ScopeName, IdentityServerConstants.StandardScopes.Email, IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile },
+                    AllowedScopes = { "catalog_full_permission", "photo_stock_full_permission", "basket_full_permission", "discount_full_permission", "order_full_permission", "cargo_full_permission", "payment_full_permission", "gateway_full_permission", IdentityServerConstants.LocalApi.ScopeName, IdentityServerConstants.StandardScopes.Email, IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile },
                     AccessTokenLifetime = 3600
                 },
             };
