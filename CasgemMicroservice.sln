@@ -16,6 +16,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{717632F3-666C-4D7E-9A65-044CC0F96167}"
 	ProjectSection(SolutionItems) = preProject
 		PortNumbers.txt = PortNumbers.txt
+		Readme.md = Readme.md
 		ToDoList.txt = ToDoList.txt
 	EndProjectSection
 EndProject
@@ -67,9 +68,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CasgemMicroservice.Services
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CasgemMicroservice.Services.Cargo.WebApi", "Services\Cargo\CasgemMicroservice.Services.Cargo.WebApi\CasgemMicroservice.Services.Cargo.WebApi.csproj", "{AA22FDF5-B7E3-4192-BF31-61849B4540BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CasgemMicroservice.Services.Payment", "Services\Payment\CasgemMicroservice.Services.Payment\CasgemMicroservice.Services.Payment.csproj", "{4B6D6471-9CAD-4463-BAED-BF398BBF28B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CasgemMicroservice.Services.Payment", "Services\Payment\CasgemMicroservice.Services.Payment\CasgemMicroservice.Services.Payment.csproj", "{4B6D6471-9CAD-4463-BAED-BF398BBF28B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CasgemMicroservice.Gateway", "Gateways\CasgemMicroservice.Gateway\CasgemMicroservice.Gateway.csproj", "{FBC158B3-9F55-4C20-BC44-CB2619DB2B37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CasgemMicroservice.Gateway", "Gateways\CasgemMicroservice.Gateway\CasgemMicroservice.Gateway.csproj", "{FBC158B3-9F55-4C20-BC44-CB2619DB2B37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
